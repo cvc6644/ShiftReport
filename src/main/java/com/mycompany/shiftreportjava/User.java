@@ -5,6 +5,11 @@
  */
 package com.mycompany.shiftreportjava;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,7 +34,37 @@ public class User implements Serializable{
         setAddress(email);
     }
     public User(){}
-    
+    public static boolean priorUserExists(){
+		return new File("ShiftReportUser.ser").exists();
+	}
+	public static boolean writeUser(User user){
+		try
+		{
+			FileOutputStream fos = new FileOutputStream("ShiftReportUser.ser");
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			oos.writeObject(user);
+			return true;
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			return false;
+		}
+	}
+	public static User retrieveUser(){
+		try
+		{
+			FileInputStream fis = new FileInputStream("ShiftReportUser.ser");
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			return (User)ois.readObject();
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			return null;
+		}
+		
+	}
     public String getAddress() {
         return Address;
     }
