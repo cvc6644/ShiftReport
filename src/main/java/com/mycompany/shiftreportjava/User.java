@@ -29,12 +29,7 @@ public class User implements Serializable{
         setAddress(email);
     }
     public User(){}
-    public static Boolean existingUserExists(){
-        return null;
-    }
-    public static User getExistingUser(){
-        return null;
-    }
+    
     public String getAddress() {
         return Address;
     }
