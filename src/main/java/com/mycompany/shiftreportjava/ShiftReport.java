@@ -67,7 +67,7 @@ public class ShiftReport {
         return username;
     }
 
-    public String buildEmail() {
+    private String buildEmail() {
         return Head
             +buildFirstLine()
             +buildLabs()
@@ -76,7 +76,7 @@ public class ShiftReport {
             +foot;
     }
 
-    public void sendEmail(String _email) {
+    private void sendEmail(String _email) {
         mail.sendMail(_email,username);
     }
 
@@ -93,7 +93,7 @@ public class ShiftReport {
     
 
     private String buildLabs() {
-        String section = "</br><h2>Lab Rounds:</h2>< /br></br>"
+        String section = "</br><h2>Lab Rounds:</h2></br>"
                 +"<table style=\"width:100%;\">"
                 + "<tr>"
                 + "<th>Lab</th>"
@@ -113,10 +113,10 @@ public class ShiftReport {
     }
 
     private String buildFootprints() {
-        String section = "</br><h2>Footprints Tickets:</h2>< /br></br>"
+        String section = "</br><h2>Footprints Tickets:</h2></br>"
                 +"<table style=\"width:100%;\">"
                 + "<tr>"
-                + "<th>Ticket#</th>"
+                + "<th>Ticket #</th>"
                 + "<th>Status</th>"
                 + "<th>Details</th>"
                 + "</tr>";
@@ -132,7 +132,7 @@ public class ShiftReport {
     }
 
     private String buildMisc() {
-        String section = "</br><h2>Misc:</h2>< /br></br>"
+        String section = "</br><h2>Misc:</h2></br>"
                 +"<table style=\"width:100%;\">"
                 + "<tr>"
                 + "<th>Event/Task</th>"

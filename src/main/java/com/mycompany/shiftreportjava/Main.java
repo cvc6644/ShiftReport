@@ -17,14 +17,16 @@ public class Main
                     dialog.setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
                     TimerListener tl = new TimerListener(dialog);
                     Timer t = new Timer(1,tl);
-                    t.setInitialDelay(40000);
+                    t.setInitialDelay(20000);
                     //t.setInitialDelay(3600000);
                     t.setRepeats(false);
                     t.start();
                     dialog.setVisible(true);
                     
                     if(tl.afkUser()){
-                        System.out.println("user afk "+ t.isRunning());
+                        ShiftReport sr = new ShiftReport(user.getUsername(),user.getLabs());
+                        sr.buildAndSend();
+                        //System.out.println("user afk "+ t.isRunning());
                         System.exit(0);
                     }else if(!tl.afkUser()){
                         t.stop();
