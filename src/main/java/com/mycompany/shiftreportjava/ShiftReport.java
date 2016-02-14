@@ -77,7 +77,7 @@ public class ShiftReport {
     }
 
     public void sendEmail(String _email) {
-        //Mail.send(email);
+        mail.sendMail(_email,username);
     }
 
     public void buildAndSend() {

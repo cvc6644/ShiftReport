@@ -11,7 +11,7 @@ public class mail
 		
                 Calendar cal = Calendar.getInstance();
                 
-		String from = _from;
+		String from = _from+"@rit.edu";
 		//String to ="its_lab_admins@rit.edu";
 		String to ="cvc6644@rit.edu";
 		String host ="mymail.rit.edu";
@@ -22,7 +22,7 @@ public class mail
 			MimeMessage message = new MimeMessage(session);
 			message.setFrom(new InternetAddress(from));
 			message.addRecipient(Message.RecipientType.TO,new InternetAddress(to));
-			message.setSubject(from.split("@")[0]+" "+((cal.get(Calendar.MONTH)+1)+"/"+cal.get(Calendar.DAY_OF_MONTH)+"/"+(cal.get(Calendar.YEAR)))+" Shift Report");
+			message.setSubject(_from+" "+((cal.get(Calendar.MONTH)+1)+"/"+cal.get(Calendar.DAY_OF_MONTH)+"/"+(cal.get(Calendar.YEAR)))+" Shift Report");
 			message.setContent(email,"text/html");
 			Transport.send(message);
 			return true;

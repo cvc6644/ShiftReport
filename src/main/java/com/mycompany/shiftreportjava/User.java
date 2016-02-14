@@ -8,6 +8,7 @@ package com.mycompany.shiftreportjava;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
@@ -45,7 +46,7 @@ public class User implements Serializable{
 			oos.writeObject(user);
 			return true;
 		}
-		catch (Exception e)
+		catch (IOException e)
 		{
 			e.printStackTrace();
 			return false;
@@ -58,7 +59,7 @@ public class User implements Serializable{
 			ObjectInputStream ois = new ObjectInputStream(fis);
 			return (User)ois.readObject();
 		}
-		catch (Exception e)
+		catch (IOException | ClassNotFoundException e)
 		{
 			e.printStackTrace();
 			return null;
