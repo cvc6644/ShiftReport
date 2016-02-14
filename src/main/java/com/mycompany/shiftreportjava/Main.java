@@ -1,8 +1,8 @@
 package com.mycompany.shiftreportjava;
 
-import java.util.Calendar;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
+import javax.swing.Timer;
 
 public class Main
 {
@@ -10,10 +10,30 @@ public class Main
             
                     
 		if(User.priorUserExists()){
-			User user = User.retrieveUser();
-			
+                    User user = User.retrieveUser();
+                    JOptionPane pane = new JOptionPane("Are you there?", JOptionPane.QUESTION_MESSAGE);
+                    JDialog dialog = pane.createDialog(null, "AFK Check");
+                    
+                    dialog.setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
+                    TimerListener tl = new TimerListener(dialog);
+                    Timer t = new Timer(1,tl);
+                    t.setInitialDelay(40000);
+                    //t.setInitialDelay(3600000);
+                    t.setRepeats(false);
+                    t.start();
+                    dialog.setVisible(true);
+                    
+                    if(tl.afkUser()){
+                        System.out.println("user afk "+ t.isRunning());
+                        System.exit(0);
+                    }else if(!tl.afkUser()){
+                        t.stop();
+                        System.out.println("user not afk "+ t.isRunning());
+                        System.exit(0);
+                    }
 		}else{
-			
+                    
 		}
 	}
+        
 }
