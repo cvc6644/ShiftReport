@@ -72,7 +72,7 @@ public class GuiBuild extends JFrame{
         jtLabs.setModel(dtmLabs);
         
         if(priorUser){
-            
+            dtmLabs.removeRow(0);
             
             for(String i : u.getLabs().keySet()){
                 dtmLabs.addRow(new String[]{i,u.getLabs().get(i)});

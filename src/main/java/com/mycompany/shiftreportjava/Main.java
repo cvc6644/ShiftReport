@@ -33,7 +33,7 @@ public class Main
                         GuiBuild guiBuild = new GuiBuild(user);
                         guiBuild.build();
                         //System.out.println("user not afk "+ t.isRunning());
-                        System.exit(0);
+                        //System.exit(0);
                     }
 		}else{
                     GuiBuild gb = new GuiBuild();
