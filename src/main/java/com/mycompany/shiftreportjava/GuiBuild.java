@@ -153,8 +153,8 @@ public class GuiBuild extends JFrame{
         jbSend.addActionListener(sendListen);
         jpSend.add(jbPreview);
         jpSend.add(jbSend);
-        jbSend.setEnabled(false);
-        jbPreview.setEnabled(false);
+        //jbSend.setEnabled(false);
+        //jbPreview.setEnabled(false);
         return jpSend;
     }
 }

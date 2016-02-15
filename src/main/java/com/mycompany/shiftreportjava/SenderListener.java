@@ -46,6 +46,7 @@ public class SenderListener implements ActionListener{
         setFootprints(sr);
         setMisc(sr);
         sr.buildAndSend();
+        System.exit(0);
     }
     public User createNewUser(){
         user = new User(email.getText());
