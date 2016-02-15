@@ -53,8 +53,8 @@ public class ShiftReport {
     public void describeLab(String name, String description) {
         Labs.put(name, description);
     }
-    public void addFootprintsTicket(int TicketNum, String _status, String _details){
-        footprints.add(new ArrayList<>(Arrays.asList(Integer.toString(TicketNum),_status,_details)));
+    public void addFootprintsTicket(String TicketNum, String _status, String _details){
+        footprints.add(new ArrayList<>(Arrays.asList(TicketNum,_status,_details)));
     }
     public void addMisc(String event, String _details){
         misc.add(new ArrayList<>(Arrays.asList(event,_details)));
@@ -70,6 +70,14 @@ public class ShiftReport {
     public String buildEmail() {
         return Head
             +buildFirstLine()
+            +buildLabs()
+            +buildFootprints()
+            +buildMisc()
+            +foot;
+    }
+    public String buildEmailWOHead(){
+        return "<html><body>"
+                +buildFirstLine()
             +buildLabs()
             +buildFootprints()
             +buildMisc()

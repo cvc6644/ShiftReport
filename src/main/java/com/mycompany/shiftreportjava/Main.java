@@ -32,13 +32,13 @@ public class Main
                         t.stop();
                         GuiBuild guiBuild = new GuiBuild(user);
                         guiBuild.build();
-                        System.out.println("user not afk "+ t.isRunning());
+                        //System.out.println("user not afk "+ t.isRunning());
                         System.exit(0);
                     }
 		}else{
                     GuiBuild gb = new GuiBuild();
                     gb.build();
-                    System.out.println("no user exist");
+                    //System.out.println("no user exist");
 		}
 	}
         
