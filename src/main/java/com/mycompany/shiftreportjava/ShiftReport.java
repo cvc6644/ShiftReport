@@ -67,7 +67,7 @@ public class ShiftReport {
         return username;
     }
 
-    private String buildEmail() {
+    public String buildEmail() {
         return Head
             +buildFirstLine()
             +buildLabs()

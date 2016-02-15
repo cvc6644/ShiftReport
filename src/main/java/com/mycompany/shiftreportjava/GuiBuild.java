@@ -6,9 +6,8 @@
 package com.mycompany.shiftreportjava;
 
 import java.awt.GridLayout;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
+import javafx.scene.paint.Color;
+import javax.swing.BoxLayout;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -18,6 +17,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import org.jdesktop.swingx.JXTable;
 
 /**
  *
@@ -35,22 +35,24 @@ public class GuiBuild extends JFrame{
         priorUser = false;
     }
     public void build(){
+        
         this.setTitle("Building Shift Report");
         
         
         
-        this.setLayout(new GridLayout(0,1));
+        this.setLayout(new BoxLayout(this.getContentPane(),BoxLayout.Y_AXIS));
         this.add(email());
         this.add(labs());
         this.add(tickets());
         this.add(misc());
+        this.add(sender());
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.pack();
         this.setVisible(true);
     }
     private JPanel email(){
         JPanel jpUsername= new JPanel();
-        jpUsername.add(new JLabel("Username"));
+        jpUsername.add(new JLabel("Email:"));
         JTextField email = new JTextField(20);
         if(priorUser){
             email.setText(u.getAddress());
@@ -59,11 +61,13 @@ public class GuiBuild extends JFrame{
         return jpUsername;
     }
     private JPanel labs(){
-        JPanel jpLabs= new JPanel(new GridLayout(3,1));
-        jpLabs.add(new JPanel().add(new JLabel("Lab Rounds:")));
+        JPanel jpLabs= new JPanel();
+        jpLabs.setLayout(new BoxLayout(jpLabs,BoxLayout.Y_AXIS));
+        jpLabs.add(new JPanel().add(new JLabel("Lab Rounds:")).getParent());
         //add jTable
-        JTable jtLabs= new JTable();
-        DefaultTableModel dtmLabs = new DefaultTableModel(1,2);
+        JXTable jtLabs= new JXTable();
+        
+        DefaultTableModel dtmLabs = new DefaultTableModel(1,1);
         dtmLabs.setColumnIdentifiers(new String[]{"Labs","Status"});
         jtLabs.setModel(dtmLabs);
         if(priorUser){
@@ -76,53 +80,79 @@ public class GuiBuild extends JFrame{
             
         }
         //dtmLabs.
+        jtLabs.setVisibleRowCount(4);
+        jtLabs.setOpaque(false);
         jpLabs.add(new JScrollPane(jtLabs));
         //add button to increase table rows
         JButton jbAddLab = new JButton("Add Lab");
         //add listener
         jbAddLab.addActionListener(new RowButtonListener(dtmLabs));
-        jpLabs.add(jbAddLab);
+        jpLabs.add(new JPanel().add(jbAddLab).getParent());
         
         return jpLabs;
     }
 
     private JPanel tickets() {
-        JPanel jpTickets= new JPanel(new GridLayout(3,1));
-        jpTickets.add(new JPanel().add(new JLabel("Footprints Tickets:")));
+        JPanel jpTickets= new JPanel();
+        jpTickets.setLayout(new BoxLayout(jpTickets,BoxLayout.Y_AXIS));
+        jpTickets.add(new JPanel().add(new JLabel("Footprints Tickets:")).getParent());
         //add jTable
-        JTable jtTickets= new JTable();
+        JXTable jtTickets= new JXTable();
         DefaultTableModel dtmTickets = new DefaultTableModel(1,3);
         dtmTickets.setColumnIdentifiers(new String[]{"Ticket #","Status","Description"});
         jtTickets.setModel(dtmTickets);
-        
+        jtTickets.setVisibleRowCount(4);
+        jtTickets.setOpaque(false);
         //dtmLabs.
         jpTickets.add(new JScrollPane(jtTickets));
         //add button to increase table rows
         JButton jbAddTicket = new JButton("Add Ticket");
         //add listener
         jbAddTicket.addActionListener(new RowButtonListener(dtmTickets));
-        jpTickets.add(jbAddTicket);
+        jpTickets.add(new JPanel().add(jbAddTicket).getParent());
         
         return jpTickets;
     }
 
     private JPanel misc() {
-        JPanel jpMisc= new JPanel(new GridLayout(3,1));
-        jpMisc.add(new JPanel().add(new JLabel("Misc:")));
+        JPanel jpMisc= new JPanel();
+        jpMisc.setLayout(new BoxLayout(jpMisc,BoxLayout.Y_AXIS));
+        jpMisc.add(new JPanel().add(new JLabel("Misc:")).getParent());
         //add jTable
-        JTable jtMisc= new JTable();
+        JXTable jtMisc= new JXTable();
         DefaultTableModel dtmMisc = new DefaultTableModel(1,2);
         dtmMisc.setColumnIdentifiers(new String[]{"Event/Task","Description"});
         jtMisc.setModel(dtmMisc);
-        
+        jtMisc.setVisibleRowCount(4);
+        jtMisc.setOpaque(false);
         //dtmLabs.
         jpMisc.add(new JScrollPane(jtMisc));
         //add button to increase table rows
         JButton jbAddMisc = new JButton("Add Misc");
         //add listener
         jbAddMisc.addActionListener(new RowButtonListener(dtmMisc));
-        jpMisc.add(jbAddMisc);
+        jpMisc.add(new JPanel().add(jbAddMisc).getParent());
         
         return jpMisc;
+    }
+    private JPanel sender(){
+        JPanel jpSend = new JPanel();
+        JButton jbPreview = new JButton("Preview");
+        jbPreview.addActionListener(new PreviewListener(u));
+        JButton jbSend;
+        SenderListener sendListen;
+        if(priorUser){
+            jbSend = new JButton("Send Email");
+            sendListen = new SenderListener(u);
+        }else{
+            jbSend = new JButton("Save User and Send Email");
+            sendListen = new SenderListener();
+        }
+        jbSend.addActionListener(sendListen);
+        jpSend.add(jbPreview);
+        jpSend.add(jbSend);
+        jbSend.setEnabled(false);
+        jbPreview.setEnabled(false);
+        return jpSend;
     }
 }
