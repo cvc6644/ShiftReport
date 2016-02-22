@@ -17,8 +17,8 @@ public class Main
                     dialog.setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
                     TimerListener tl = new TimerListener(dialog);
                     Timer t = new Timer(1,tl);
-                    t.setInitialDelay(20000);
-                    //t.setInitialDelay(3600000);
+                    //t.setInitialDelay(20000);
+                    t.setInitialDelay(3600000);
                     t.setRepeats(false);
                     t.start();
                     dialog.setVisible(true);
