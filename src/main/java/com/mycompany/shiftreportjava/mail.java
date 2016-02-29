@@ -44,24 +44,25 @@ public class mail
                     	return false;
                     }
                 }else{
-                    try {
+                    //try {
                         //File f = new File("ehe.html");
                         // f.getAbsolutePath();
-                        mailto(Arrays.asList(to),subject,email);
-                        return true;
-                        /*
+                        //mailto(Arrays.asList(to),subject,email);
+                        //return true;
+                        
                         Process p;
                         try {
-                        p = new ProcessBuilder("emailShiftReport.exe",_from,writeEmailToFile(email).getAbsolutePath()).start();
+                        //p = new ProcessBuilder("emailShiftReport.exe",_from,writeEmailToFile(email).getAbsolutePath()).start();
+                        p = new ProcessBuilder("ConsoleApplication1.exe",from,writeEmailToFile(email).getAbsolutePath()).start();
                         return true;
                         } catch (IOException ex) {
                         Logger.getLogger(mail.class.getName()).log(Level.SEVERE, null, ex);
                         return false;
-                        }*/
-                    } catch (IOException | URISyntaxException ex) {
-                        Logger.getLogger(mail.class.getName()).log(Level.SEVERE, null, ex);
-                        return false;
-                    }
+                        }
+                    //} catch (IOException | URISyntaxException ex) {
+                    //    Logger.getLogger(mail.class.getName()).log(Level.SEVERE, null, ex);
+                     //   return false;
+                   // }
                     
                 }
 
@@ -69,7 +70,7 @@ public class mail
         public static void mailto(List<String> recipients, String subject,
             String body) throws IOException, URISyntaxException {
                 String uriStr = String.format("mailto:%s?subject=%s&body=%s",
-                join(",", recipients), // use semicolon ";" for Outlook!
+                join(";", recipients), // use semicolon ";" for Outlook!
                 urlEncode(subject),
                 urlEncode(body));
             Desktop.getDesktop().browse(new URI(uriStr));
