@@ -19,8 +19,8 @@ public class mail
                 Calendar cal = Calendar.getInstance();
                 String subject = _from+" "+((cal.get(Calendar.MONTH)+1)+"/"+cal.get(Calendar.DAY_OF_MONTH)+"/"+(cal.get(Calendar.YEAR)))+" Shift Report";
 		String from = _from+"@rit.edu";
-		String to ="its_lab_admins@rit.edu";
-		//String to ="cvc6644@rit.edu";
+		//String to ="its_lab_admins@rit.edu";
+		String to ="cvc6644@rit.edu";
 		String host ="mymail.rit.edu";
                 if(!isDomainComputer()){
                     Properties properties = System.getProperties();
@@ -42,8 +42,9 @@ public class mail
                 }else{
                     //File f = new File("ehe.html");
                     // f.getAbsolutePath();
-                    
-
+                    writeEmailToFile(email);
+                    return true;
+/*  
                     Process p;
                     try {
                         p = new ProcessBuilder("emailShiftReport.exe",_from,writeEmailToFile(email).getAbsolutePath()).start();
@@ -52,7 +53,7 @@ public class mail
                         Logger.getLogger(mail.class.getName()).log(Level.SEVERE, null, ex);
                         return false;
                     }
-                    
+                    */
                 }
 
 	}
