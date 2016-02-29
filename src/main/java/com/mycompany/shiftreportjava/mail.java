@@ -75,7 +75,7 @@ public class mail
             Desktop.getDesktop().browse(new URI(uriStr));
         }
 
-    private static final String urlEncode(String str) {
+    private static String urlEncode(String str) {
         try {
             return URLEncoder.encode(str, "UTF-8").replace("+", "%20");
         } catch (UnsupportedEncodingException e) {
