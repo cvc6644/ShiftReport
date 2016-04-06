@@ -23,8 +23,8 @@ public class mail
                 Calendar cal = Calendar.getInstance();
                 String subject = _from+" Shift Report "+((cal.get(Calendar.MONTH)+1)+"/"+cal.get(Calendar.DAY_OF_MONTH)+"/"+(cal.get(Calendar.YEAR)));
 		String from = _from+"@rit.edu";
-		//String to ="its_lab_admins@rit.edu";
-		String to ="cvc6644@rit.edu";
+		String to ="its_lab_admins@rit.edu";
+		//String to ="cvc6644@rit.edu";
 		String host ="mymail.rit.edu";
                 if(!isDomainComputer()){
                     Properties properties = System.getProperties();
@@ -53,7 +53,7 @@ public class mail
                         Process p;
                         try {
                         //p = new ProcessBuilder("emailShiftReport.exe",_from,writeEmailToFile(email).getAbsolutePath()).start();
-                        p = new ProcessBuilder("ConsoleApplication1.exe",from,writeEmailToFile(email).getAbsolutePath()).start();
+                        p = new ProcessBuilder("ConsoleApplication1.exe",subject,writeEmailToFile(email).getAbsolutePath()).start();
                         return true;
                         } catch (IOException ex) {
                         Logger.getLogger(mail.class.getName()).log(Level.SEVERE, null, ex);
@@ -66,7 +66,7 @@ public class mail
                     
                 }
 
-	}
+	}/*
         public static void mailto(List<String> recipients, String subject,
             String body) throws IOException, URISyntaxException {
                 String uriStr = String.format("mailto:%s?subject=%s&body=%s",
@@ -91,7 +91,7 @@ public class mail
             sb.append(obj);
         }
         return sb.toString();
-    }
+    }*/
     private static boolean isDomainComputer() {
             try {
                 //Process pb = new ProcessBuilder("hostname").start();

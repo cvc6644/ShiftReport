@@ -55,7 +55,7 @@ public class Previewer {
         jEditorPane.setText(htmlString);
 
         // now add it all to a frame
-        JFrame j = new JFrame("HtmlEditorKit Test");
+        JFrame j = new JFrame("Shift Report Preview");
         j.getContentPane().add(scrollPane, BorderLayout.CENTER);
 
         // make it easy to close the application
